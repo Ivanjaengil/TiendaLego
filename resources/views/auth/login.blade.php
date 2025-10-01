@@ -46,20 +46,14 @@
 
                 <!-- Remember Me -->
                 <div class="remember-me">
-                    <input 
-                        type="checkbox" 
-                        id="remember_me" 
-                        name="remember"
-                    >
-                    <label for="remember_me">
-                        Recordarme
-                    </label>
+                    <input type="checkbox" id="remember_me" name="remember">
+                    <label for="remember_me">Recordarme</label>
                 </div>
 
-                <button type="submit" class="login-button">
-                    Iniciar Sesión
-                </button>
+                <!-- Botón -->
+                <button type="submit" class="login-button">Iniciar Sesión</button>
 
+                <!-- Links -->
                 <div class="auth-links">
                     <a href="{{ route('password.request') }}" class="forgot-password">
                         ¿Olvidaste tu contraseña?

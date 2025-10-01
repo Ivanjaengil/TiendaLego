@@ -1,269 +1,206 @@
-.payment-container {
-    max-width: 1200px;
-    margin: 2rem auto;
-    padding: 20px;
-    background-color: #1a1a1a;
-    color: #ffffff;
-    border-radius: 15px;
-    box-shadow: 0 0 20px rgba(255, 215, 0, 0.1);
+:root{
+  --bg:#222327;
+  --panel:#2a2a2a;
+  --panel-strong:#1a1a1a;
+  --brand:#FFD700;
+  --accent:#FF0000;
+  --ok:#4CAF50;
+  --text:#ffffff;
+  --muted: rgba(255,255,255,.6);
 }
 
-h1, h2, h3 {
-    color: #FFD700;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 20px;
+*{ box-sizing:border-box; }
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial;
 }
 
-.order-summary {
-    background-color: #2a2a2a;
-    padding: 20px;
-    border-radius: 10px;
-    border: 1px solid #FFD700;
-    margin-bottom: 30px;
+/* Contenedor principal */
+.payment-container{
+  max-width:600px;
+  margin:2rem auto;
+  padding:25px;
+  background:rgba(26,26,26,.95);
+  border-radius:15px;
+  border:2px solid var(--brand);
+  box-shadow:0 8px 25px rgba(0,0,0,.3);
+  animation:fadeIn .5s ease-out;
 }
 
-.total-amount {
-    color: #FF0000;
-    font-size: 1.5em;
-    font-weight: bold;
+/* Título */
+.payment-container h1{
+  color:var(--brand);
+  font-size:2rem;
+  margin:0 0 20px;
+  text-align:center;
+  text-transform:uppercase;
+  letter-spacing:2px;
 }
 
-.form-group {
-    margin-bottom: 25px;
+/* Resumen */
+.order-summary{
+  background:rgba(42,42,42,.8);
+  padding:20px;
+  border-radius:12px;
+  margin-bottom:20px;
+  border:1px solid var(--brand);
+  box-shadow:0 4px 12px rgba(0,0,0,.2);
+}
+.total-amount{
+  color:var(--brand);
+  font-size:20px;
+  font-weight:700;
+  text-align:center;
+  letter-spacing:1px;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="number"] {
-    width: 100%;
-    padding: 12px;
-    margin: 8px 0;
-    background-color: #2a2a2a;
-    border: 1px solid #FFD700;
-    border-radius: 5px;
-    color: #ffffff;
-    transition: all 0.3s ease;
+/* Formulario */
+.form-group{ margin-bottom:20px; }
+.form-row{ display:flex; gap:15px; margin-bottom:15px; }
+
+input{
+  width:100%;
+  padding:12px;
+  background:rgba(42,42,42,.8);
+  border:2px solid var(--brand);
+  border-radius:8px;
+  color:var(--text);
+  font-size:14px;
+  transition:.3s;
+}
+input:focus{
+  outline:0;
+  border-color:var(--accent);
+  box-shadow:0 0 10px rgba(255,0,0,.2);
+}
+::placeholder{ color:var(--muted); }
+
+.group-title{ margin:0 0 8px; }
+
+/* Opciones de pago */
+.payment-option{
+  background:rgba(42,42,42,.8);
+  padding:15px;
+  margin:8px 0;
+  border-radius:8px;
+  border:2px solid var(--brand);
+  transition:.3s;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+}
+.payment-option:hover{ border-color:var(--accent); transform:translateY(-2px); }
+.payment-option label{ color:var(--brand); font-size:16px; margin-left:8px; cursor:pointer; }
+input[type="radio"]{ width:16px; height:16px; margin-right:8px; cursor:pointer; }
+input[type="radio"]:checked + label{ color:var(--accent); }
+
+/* Mensaje de error */
+.payment-error{
+  margin-top:12px;
+  background:#3b1b1b;
+  border:1px solid #ff6b6b;
+  color:#ffdddd !important;
+  padding:12px 14px;
+  border-radius:8px;
+  display:none;           /* por defecto oculto */
+  font-size:0.95rem;      /* aseguramos tamaño */
+  line-height:1.35;       /* aseguramos altura de línea */
+}
+.payment-error.show{
+  display:block;          /* visible cuando tenga la clase show */
 }
 
-input[type="text"]:focus,
-input[type="email"]:focus,
-input[type="number"]:focus {
-    border-color: #FF0000;
-    box-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
-    outline: none;
+/* Apple/Google */
+.payment-button{
+  background:none;
+  border:2px solid var(--brand);
+  border-radius:12px;
+  padding:10px;
+  margin:10px;
+  cursor:pointer;
+  transition:.3s;
+  display:inline-block;
+}
+.payment-button:hover{
+  transform:translateY(-5px);
+  box-shadow:0 0 20px rgba(255,215,0,.5);
+  border-color:var(--accent);
+}
+.payment-button img{ width:100px; height:auto; display:block; transition:.3s; }
+
+/* Transferencia */
+.transfer-container{ display:none; opacity:0; transform:translateY(-20px); transition:.3s ease-in-out; text-align:center; }
+.transfer-container.show{ display:block; opacity:1; transform:translateY(0); }
+
+/* Tarjeta */
+.card-form{ opacity:0; height:0; overflow:hidden; transition:.3s ease-in-out; margin-top:15px; background:rgba(42,42,42,.8); padding:0; border-radius:8px; border:1px solid var(--brand); }
+.card-form.show{ opacity:1; height:auto; padding:20px; margin-bottom:20px; }
+.card-input{ background:rgba(26,26,26,.95); border:1px solid var(--brand); color:#fff; padding:12px; border-radius:6px; margin-bottom:10px; width:100%; }
+.card-row{ display:flex; gap:15px; }
+.card-row input{ flex:1; }
+.card-number{ letter-spacing:2px; }
+
+/* Acciones */
+.actions{
+  display:flex;
+  gap:12px;
+  align-items:stretch;
+  justify-content:space-between;
+  margin-top:10px;
+}
+@media (max-width:520px){
+  .actions{ flex-direction:column; }
 }
 
-.payment-options {
-    margin: 25px 0;
+/* Botón cancelar */
+.cancel-button{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:12px 20px;
+  border:2px solid var(--brand);
+  color:var(--brand);
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:700;
+  letter-spacing:.3px;
+  transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease, color .2s ease, background .2s ease;
+  width:100%;
+  background:transparent;
+}
+.cancel-button:hover{
+  border-color:#ff6666;
+  color:#fff;
+  background:#7a1f1f;
+  transform:translateY(-2px);
+  box-shadow:0 6px 16px rgba(0,0,0,.25);
 }
 
-.payment-option {
-    background-color: #2a2a2a;
-    padding: 15px;
-    margin: 10px 0;
-    border-radius: 8px;
-    border: 1px solid #FFD700;
-    cursor: pointer;
-    transition: all 0.3s ease;
+/* Botón pagar */
+.pay-button{
+  width:100%;
+  padding:15px;
+  background:var(--accent);
+  color:#fff;
+  border:0;
+  border-radius:8px;
+  cursor:pointer;
+  font-size:16px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  transition:.3s;
 }
+.pay-button:hover{ background:var(--ok); transform:translateY(-2px); box-shadow:0 5px 15px rgba(76,175,80,.3); }
 
-.payment-option:hover {
-    border-color: #FF0000;
-    transform: translateY(-2px);
+/* Animación */
+@keyframes fadeIn{ from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+
+/* Responsive */
+@media (max-width:768px){
+  .payment-container{ margin:1rem; padding:15px; }
+  .form-row{ flex-direction:column; gap:12px; }
+  .payment-container h1{ font-size:1.6rem; }
 }
-
-.payment-option input[type="radio"] {
-    margin-right: 10px;
-}
-
-.payment-option label {
-    color: #FFD700;
-    cursor: pointer;
-}
-
-.card-details {
-    background-color: #2a2a2a;
-    padding: 20px;
-    border-radius: 8px;
-    margin: 15px 0;
-    border: 1px solid #FFD700;
-}
-
-.card-extra {
-    display: flex;
-    gap: 15px;
-}
-
-.pay-button {
-    width: 100%;
-    padding: 10px 20px;
-    background-color: #FF0000;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 20px;
-}
-
-.pay-button:hover {
-    background-color: #cc0000;
-}
-
-.success-container {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #1a1a1a;
-    padding: 20px;
-}
-
-.success-message {
-    background-color: #2a2a2a;
-    padding: 40px;
-    border-radius: 15px;
-    text-align: center;
-    border: 2px solid #FFD700;
-    max-width: 600px;
-    width: 100%;
-}
-
-.success-icon {
-    display: inline-block;
-    width: 80px;
-    height: 80px;
-    line-height: 80px;
-    background: linear-gradient(45deg, #FF0000, #FFD700);
-    color: #ffffff;
-    border-radius: 50%;
-    font-size: 40px;
-    margin-bottom: 20px;
-    animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-    0% {
-        transform: scale(1);
-        box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.4);
-    }
-    70% {
-        transform: scale(1.05);
-        box-shadow: 0 0 0 20px rgba(255, 215, 0, 0);
-    }
-    100% {
-        transform: scale(1);
-        box-shadow: 0 0 0 0 rgba(255, 215, 0, 0);
-    }
-}
-
-.success-message h1 {
-    color: #FFD700;
-    margin-bottom: 20px;
-    font-size: 2em;
-}
-
-.back-button {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #FF0000;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    margin-top: 20px;
-}
-
-.back-button:hover {
-    background-color: #cc0000;
-}
-
-.order-details {
-    margin: 20px 0;
-    padding: 20px;
-    background: linear-gradient(45deg, rgba(255,0,0,0.05), rgba(255,215,0,0.05));
-    border-radius: 8px;
-    text-align: left;
-    border: 1px solid rgba(255,0,0,0.1);
-}
-
-.success-actions {
-    margin-top: 30px;
-}
-
-.success-message p {
-    color: #666;
-    margin: 10px 0;
-}
-
-.alert {
-    padding: 15px;
-    margin-bottom: 20px;
-    border: 1px solid transparent;
-    border-radius: 4px;
-}
-
-.alert-success {
-    color: #155724;
-    background-color: #d4edda;
-    border-color: #c3e6cb;
-}
-
-.alert-error {
-    color: #721c24;
-    background-color: #f8d7da;
-    border-color: #f5c6cb;
-}
-
-.processing {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(255, 255, 255, 0.9);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-
-.processing-animation {
-    width: 80px;
-    height: 80px;
-    border: 8px solid #FFD700;
-    border-top: 8px solid #FF0000;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-.quantity-controls button {
-    padding: 5px 10px;
-    background-color: #FF0000;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.quantity-controls button:hover {
-    background-color: #cc0000;
-}
-
-.remove-item {
-    padding: 5px 10px;
-    background-color: #FF0000;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.remove-item:hover {
-    background-color: #cc0000;
-} 

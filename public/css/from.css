@@ -1,0 +1,113 @@
+:root{
+  --bg:#222327;
+  --panel:#1a1a1a;
+  --panel-soft:#2a2a2a;
+  --brand:#FFD700;
+  --accent:#FF0000;
+  --ok:#4CAF50;
+  --text:#ffffff;
+}
+
+*{ box-sizing:border-box; }
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial;
+}
+
+.paypal-container{
+  max-width:600px;
+  margin:2rem auto;
+  padding:25px;
+  background:rgba(26,26,26,.95);
+  border-radius:15px;
+  border:2px solid var(--brand);
+  box-shadow:0 8px 25px rgba(0,0,0,.3);
+  animation:fadeIn .5s ease-out;
+  text-align:center;
+}
+
+.paypal-container h1{
+  color:var(--brand);
+  font-size:2rem;
+  margin:0 0 12px;
+  text-transform:uppercase;
+  letter-spacing:2px;
+}
+
+.paypal-total{
+  margin:6px 0 16px;
+  font-weight:600;
+}
+
+/* Botonera */
+.actions{
+  display:flex;
+  gap:12px;
+  align-items:stretch;
+  justify-content:space-between;
+}
+
+@media (max-width:520px){
+  .actions{ flex-direction:column; }
+}
+
+/* Botón continuar */
+.paypal-submit-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:.5rem;
+  padding:14px 22px;
+  border:none;
+  border-radius:10px;
+  background:var(--accent);
+  color:#fff;
+  font-weight:700;
+  cursor:pointer;
+  letter-spacing:.5px;
+  transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
+  width:100%;
+}
+.paypal-submit-btn:hover{
+  background:var(--ok);
+  transform:translateY(-2px);
+  box-shadow:0 6px 16px rgba(0,0,0,.25);
+}
+.paypal-submit-btn[disabled]{ opacity:.7; cursor:not-allowed; }
+
+/* Botón volver */
+.back-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:12px 20px;
+  border:2px solid var(--brand);
+  color:var(--brand);
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:600;
+  letter-spacing:.3px;
+  transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease, color .2s ease;
+  width:100%;
+}
+.back-btn:hover{
+  border-color:var(--accent);
+  color:#fff;
+  transform:translateY(-2px);
+  box-shadow:0 6px 16px rgba(0,0,0,.25);
+}
+
+/* Hint */
+.paypal-hint{
+  margin-top:14px;
+  font-size:.95rem;
+  color:#ddd;
+}
+
+/* Animación */
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(20px)}
+  to{opacity:1; transform:translateY(0)}
+}

@@ -19,7 +19,7 @@
             <img src="{{ asset('img/lego-logo.jpg') }}" alt="LEGO Logo" width="60px">
         </a>
         <ul class="navbar">
-            <li><a href="{{ route('home.index') }}">Home</a></li>
+            <li><a href="{{ route('home') }}">Home</a></li>
             <li><a href="{{ route('piezaslego.index') }}">PiezasLego</a></li>
             <li><a href="{{ route('carrito.index') }}">Carrito</a></li>
             <li><a href="{{ route('contacto.index') }}">Contacto</a></li>
@@ -27,13 +27,13 @@
 
         <div class="main">
             @if (Auth::check())
-                <a href="{{ route('profile.edit') }}" class="user">
-                    <i class="ri-user-fill"></i>Perfil
+                <a href="{{ route('profile.edit') }}" class="user"  >
+                    <i  class="ri-user-fill" ></i>Perfil
                 </a>
                 <form method="POST" action="{{ route('logout') }}" style="display: inline;">
                     @csrf
                     <a href="{{ route('logout') }}" class="user" onclick="event.preventDefault(); this.closest('form').submit();">
-                        <i class='bx bx-user-minus'></i>Cerrar Sesión
+                        <i class='ri-logout-box-r-line'></i>Cerrar Sesión
                     </a>
                 </form>
             @else

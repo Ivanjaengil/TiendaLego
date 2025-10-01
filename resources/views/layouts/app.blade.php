@@ -1,36 +1,59 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+    <link rel="stylesheet" href="{{ asset('css/welcome.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+</head>
+<body class="bg-gray-900 text-white">
+    <header>
+        <a href="{{ route('home') }}" class="logo">
+            <img src="{{ asset('img/lego-logo.jpg') }}" alt="LEGO Logo" width="60px">
+        </a>
 
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
-            @include('layouts.navigation')
+        <ul class="navbar">
+            <li><a href="{{ route('home') }}" class="{{ request()->routeIs('home') ? 'active' : '' }}">Home</a></li>
+            <li><a href="{{ route('piezaslego.index') }}">PiezasLego</a></li>
+            <li><a href="{{ route('carrito.index') }}">Carrito</a></li>
+            <li><a href="{{ route('contacto.index') }}">Contacto</a></li>
+        </ul>
 
-            <!-- Page Heading -->
-            @isset($header)
-                <header class="bg-white dark:bg-gray-800 shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endisset
-
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+        <div class="main">
+            @auth
+                <span class="user">
+                    <i class="ri-user-fill"></i> {{ Auth::user()->name }}
+                </span>
+                <a href="{{ route('profile.edit') }}" class="user">Perfil</a>
+                <form method="POST" action="{{ route('logout') }}" style="display:inline;">
+                    @csrf
+                    <button type="submit" class="user">Cerrar Sesión</button>
+                </form>
+            @else
+                <a href="{{ route('login') }}" class="user">
+                    <i class="fas fa-user mr-2"></i> Iniciar Sesión
+                </a>
+                <a href="{{ route('register') }}" class="user">
+                    <i class="fas fa-user-plus mr-2"></i> Registrarse
+                </a>
+            @endauth
+            <div class="bx bx-menu" id="menu-icon"></div>
         </div>
-    </body>
+    </header>
+
+    <main>
+        @hasSection('content')
+            @yield('content')        {{-- Para vistas con @extends --}}
+        @else
+            {{ $slot ?? '' }}        {{-- Para vistas con <x-app-layout> --}}
+        @endif
+    </main>
+</body>
 </html>

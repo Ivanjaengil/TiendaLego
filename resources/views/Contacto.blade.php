@@ -3,41 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tienda Lego</title>
-    <link rel="stylesheet" href="{{asset('css/contacto.css')}}">
-    <link rel="stylesheet" href="{{asset('css/welcome.css')}}">
+    <title>Contacto</title>
+    <link rel="stylesheet" href="{{asset('css/contacto.css')}}?v=140">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            padding-top: 80px; /* Ajusta este valor según la altura de tu header */
-        }
-
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background-color: #1a1a1a;
-            z-index: 1000;
-            transition: transform 0.3s ease;
-        }
-
-        header.hidden {
-            transform: translateY(-100%);
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <header>
-        <a href="" class="logo">
+        <a href="{{route('home')}}" class="logo">
             <img src="{{ asset('img/lego-logo.jpg') }}" alt="LEGO Logo" width="60px">
         </a>
         <ul class="navbar">
-            <li><a href="{{ route('home.index') }}" class="active">Home</a></li>
+            <li><a href="{{ route('home') }}" >Home</a></li>
             <li><a href="{{ route('piezaslego.index') }}">PiezasLego</a></li>
             <li><a href="{{ route('carrito.index') }}">Carrito</a></li>
-            <li><a href="{{ route('contacto.index') }}">Contacto</a></li>
+            <li><a href="{{ route('contacto.index') }}"class="active">Contacto</a></li>
         </ul>
 
         <div class="main">
@@ -50,8 +32,18 @@
                     </a>
                 </form>
             @else
-                <a href="{{ route('login') }}" class="user"><i class="ri-user-fill"></i>Iniciar Sesión</a>
-                <a href="{{ route('register') }}" class="user"><i class='bx bx-user-plus'></i>Registrarse</a>
+                <a href="{{ route('login') }}" class="user">
+                    <div class="flex items-center">
+                        <i class="fas fa-user fa-2x mr-2"></i>
+                        <span class="text-lg">Iniciar Sesión</span>
+                    </div>
+                </a>
+                <a href="{{ route('register') }}" class="user">
+                    <div class="flex items-center">
+                        <i class="fas fa-user-plus fa-2x mr-2"></i>
+                        <span class="text-lg">Registrarse</span>
+                    </div>
+                </a>
             @endif
             <div class="bx bx-menu" id="menu-icon"></div>
         </div>
@@ -132,92 +124,7 @@
     </div>
 </footer>
 
-
-
-    <script>
-        let menuIcon = document.querySelector('#menu-icon');
-        let navbar = document.querySelector('.navbar');
-        
-        // Toggle del menú hamburguesa
-        menuIcon.addEventListener('click', () => {
-            menuIcon.classList.toggle('bx-x');
-            navbar.classList.toggle('open');
-        });
-
-        // Efecto de scroll para el header
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('header');
-            const scrollPosition = window.scrollY;
-
-            if (scrollPosition > 50) {
-                header.style.background = '#000000';
-                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.3)';
-                header.style.transition = 'all 0.3s ease';
-            } else {
-                header.style.background = 'transparent';
-                header.style.boxShadow = 'none';
-            }
-        });
-
-        // Animaciones para el formulario de contacto
-        const formGroups = document.querySelectorAll('.form-group');
-        
-        formGroups.forEach((group, index) => {
-            group.style.opacity = '0';
-            group.style.transform = 'translateY(20px)';
-            
-            setTimeout(() => {
-                group.style.transition = 'all 0.5s ease';
-                group.style.opacity = '1';
-                group.style.transform = 'translateY(0)';
-            }, 200 * index);
-        });
-
-        // Efecto hover para los campos del formulario
-        const inputs = document.querySelectorAll('input, textarea');
-        
-        inputs.forEach(input => {
-            input.addEventListener('focus', () => {
-                input.style.transform = 'scale(1.01)';
-                input.style.transition = 'all 0.3s ease';
-                input.style.borderColor = '#ff0000';
-            });
-
-            input.addEventListener('blur', () => {
-                input.style.transform = 'scale(1)';
-                input.style.borderColor = '#444';
-            });
-        });
-
-        // Animación para la información de contacto
-        const infoItems = document.querySelectorAll('.info-item');
-        
-        infoItems.forEach((item, index) => {
-            item.style.opacity = '0';
-            item.style.transform = 'translateX(20px)';
-            
-            setTimeout(() => {
-                item.style.transition = 'all 0.5s ease';
-                item.style.opacity = '1';
-                item.style.transform = 'translateX(0)';
-            }, 300 * index);
-        });
-
-        // Efecto hover para el botón de enviar
-        const submitBtn = document.querySelector('.submit-btn');
-        
-        submitBtn.addEventListener('mouseenter', () => {
-            submitBtn.style.transform = 'translateY(-3px)';
-            submitBtn.style.boxShadow = '0 5px 15px rgba(255, 0, 0, 0.3)';
-        });
-        
-        submitBtn.addEventListener('mouseleave', () => {
-            submitBtn.style.transform = 'translateY(0)';
-            submitBtn.style.boxShadow = 'none';
-        });
-
-        
-    </script>
+<!-- JS -->
+<script src="{{ asset('js/contacto.js') }}?v=1"></script>
 </body>
-</html>
 </html>
