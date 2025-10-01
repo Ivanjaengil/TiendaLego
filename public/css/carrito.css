@@ -1,0 +1,454 @@
+* {
+    padding: 0;
+    margin: 0;
+        box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    text-decoration: none;
+    list-style: none;
+  }
+  
+  :root{
+    --bg-color: #222327;
+    --text-color: #fff200;
+    --main-color: #ff0000;
+  }
+  
+  body{
+    min-height: 100vh;
+    background: var(--bg-color);
+    color: var(--text-color);
+    padding-top: 80px;
+  }
+  
+  header {
+    background-color: #000000;
+    padding: 20px 10%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .logo{
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo i{
+    color: var(--main-color);
+    font-size: 28px;
+    margin-right: 3px;
+  
+  }
+  
+  .logo span{
+    color: var(--text-color);
+    font-size: 1.7rem;
+    font-weight: 600;
+  }
+  
+  .navbar{
+    display: flex;
+    list-style: none;
+  }
+  
+  .navbar a{
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 500;
+    padding: 5px 0;
+    margin: 0px 30px;
+    transition: all .50s ease;
+    text-decoration: none;
+  }
+  
+  .navbar a:hover{
+    color: #FFD700;
+  }
+  
+  .navbar a.active{
+    color: #FFD700;
+  }
+  
+  .main{
+    display: flex;
+    align-items: center;
+  }
+  
+  .main a{
+    margin-right: 25px;
+    margin-left: 10px;
+    color: var(--text-color);
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: all .50s ease;
+  }
+  
+  .user{
+    display: flex;
+    align-items: center;
+  }
+  
+  .user i{
+    color: var(--main-color);
+    font-size: 28px;
+    margin-right: 7px;
+  }
+  
+  .main a:hover{
+    color: var(--main-color);
+  }
+  
+  #menu-icon{
+    font-size: 35px;
+    color: var(--text-color);
+    cursor: pointer;
+    z-index: 10001;
+    display: none;
+  } 
+
+/* Estilos del carrito */
+.cart-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 30px;
+    background: rgba(42, 42, 46, 0.9);
+    border-radius: 15px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.cart-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    color: var(--text-color);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.cart-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 15px;
+    margin-bottom: 30px;
+}
+
+.cart-table th {
+    background: var(--main-color);
+    color: white;
+    padding: 15px;
+    text-align: left;
+    border-radius: 8px;
+}
+
+.cart-table td {
+    padding: 20px 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+.cart-table tr {
+    transition: transform 0.3s ease;
+}
+
+.cart-table tr:hover {
+    transform: translateY(-5px);
+}
+
+.cart-table img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.cart-table img:hover {
+    transform: scale(1.1);
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.quantity-btn {
+    background: var(--main-color);
+    color: white;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1.2rem;
+}
+
+.quantity-btn:hover {
+    background: #cc0000;
+    transform: scale(1.1);
+}
+
+.quantity-input {
+    width: 60px;
+    padding: 8px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.remove-btn {
+    background: var(--main-color);
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.remove-btn:hover {
+    background: #cc0000;
+    transform: rotate(90deg);
+}
+
+.cart-summary {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 30px;
+    border-radius: 15px;
+    margin-top: 30px;
+}
+
+.cart-total {
+    font-size: 1.2rem;
+    color: var(--text-color);
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+.checkout-btn {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background: var(--main-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.checkout-btn:hover {
+    background: #cc0000;
+}
+
+.continue-shopping {
+    display: inline-block;
+    margin-top: 20px;
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.continue-shopping:hover {
+    color: var(--main-color);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .cart-container {
+        margin: 10px;
+        padding: 15px;
+    }
+
+    .cart-table {
+        display: block;
+        overflow-x: auto;
+    }
+
+    .cart-title {
+        font-size: 1.5rem;
+    }
+}
+
+.add-to-cart {
+    background-color: #FF0000;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.add-to-cart:hover {
+    background-color: #cc0000;
+}
+
+/* Botones de cantidad (+ y -) */
+.quantity-controls button {
+    background-color: #FF0000;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.quantity-controls button:hover {
+    background-color: #cc0000;
+}
+
+/* Botón de eliminar */
+.remove-item {
+    background-color: #FF0000;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.remove-item:hover {
+    background-color: #cc0000;
+}
+
+/* Botón de proceder al pago */
+.checkout-button {
+    background-color: #FF0000;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.checkout-button:hover {
+    background-color: #cc0000;
+}
+
+/* Botón de continuar comprando */
+.continue-shopping {
+    display: inline-block;
+    background-color: #FF0000;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.continue-shopping:hover {
+    background-color: #cc0000;
+}
+
+/* Input de cantidad */
+.quantity-input {
+    width: 50px;
+    text-align: center;
+    margin: 0 5px;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #1a1a1a;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+    border-bottom: 2px solid var(--main-color);
+}
+
+header.hidden {
+    transform: translateY(-100%);
+}
+
+.navbar a {
+    color: #ffd700;
+    transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+    color: var(--main-color);
+}
+
+.main .user {
+    color: #ffd700;
+    transition: color 0.3s ease;
+}
+
+.main .user:hover {
+    color: var(--main-color);
+}
+
+.main button.user {
+    color: #ffd700 !important;
+}
+
+.main form {
+    display: inline;
+}
+
+.main .user {
+    display: inline-flex;
+    align-items: center;
+    color: #ffd700;
+    margin-right: 25px;
+    transition: all .50s ease;
+}
+
+.main .user i {
+    margin-right: 7px;
+    font-size: 20px;
+}
+
+.main .user:hover {
+    color: var(--main-color);
+}
+
+.product-image {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+}
+
+.product-image.animated {
+    animation: fadeInAndScale 0.5s ease-out;
+}
+
+@keyframes fadeInAndScale {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.cart-item-image img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+}
